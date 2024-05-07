@@ -17,7 +17,7 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
     model: "gpt-4-turbo",
     name: "Smol GitHub Workspace",
     instructions:
-      "You are an expert programmer. You are asked to provide a solution to the given issue using the provided tools.",
+      "You are an expert programmer. You are asked to provide a solution to the given issue using the provided tools. Once completed, please provide a detailed explanation of the solution using the tool create_issue_comment.",
     tools: [
       { type: "code_interpreter" },
       {
@@ -100,6 +100,23 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
               },
             },
             required: ["path"],
+          },
+        },
+      },
+      {
+        type: "function",
+        function: {
+          name: "create_issue_comment",
+          description: "Create a comment on an issue with a detailed explanation of the solution",
+          parameters: {
+            type: "object",
+            properties: {
+              body: {
+                type: "string",
+                description: "The content of the comment",
+              },
+            },
+            required: ["body"],
           },
         },
       },
@@ -196,6 +213,18 @@ const handleRequiresAction = async (thread, run) => {
       toolOutputs.push({
         tool_call_id: tool.id,
         output: "File deleted successfully",
+      });
+    } else if (tool.function.name === "create_issue_comment") {
+      const args = JSON.parse(tool.function.arguments);
+      await octokit.issues.createComment({
+        owner,
+        repo,
+        issue_number: issueNumber,
+        body: args.body,
+      });
+      toolOutputs.push({
+        tool_call_id: tool.id,
+        output: "Issue comment created successfully",
       });
     }
   }
