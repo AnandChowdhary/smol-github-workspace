@@ -25,3 +25,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Fixes #${{ github.event.issue.number }}"
+        body: |
+          This pull request was automatically created by the Issue Workflow.
+          It fixes issue #${{ github.event.issue.number }}.
