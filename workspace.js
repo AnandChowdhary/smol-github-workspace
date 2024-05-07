@@ -61,6 +61,7 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
   let run = await openai.beta.threads.runs.createAndPoll(thread.id, {
     assistant_id: assistant.id,
   });
+  return handleRunStatus(thread, run);
 })();
 
 /**
