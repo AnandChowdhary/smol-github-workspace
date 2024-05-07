@@ -6,7 +6,8 @@
     <title>Counter Example</title>
     <style>
         #increment-btn {
-            background-color: red;
+            background-color: green; /* Changed from red to green */
+            color: yellow; /* Added text color as yellow */
         }
     </style>
 </head>
@@ -16,7 +17,7 @@
     <script>
         let count = 0;
         document.getElementById('increment-btn').addEventListener('click', function() {
-            count++;
+            count += 20; /* Changed increment to 20 */
             document.getElementById('count').textContent = count;
         });
     </script>
