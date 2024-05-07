@@ -44,6 +44,65 @@ const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
           },
         },
       },
+      {
+        type: "function",
+        function: {
+          name: "update_file",
+          description: "Update the contents of a file in a repository",
+          parameters: {
+            type: "object",
+            properties: {
+              path: {
+                type: "string",
+                description: "The path of the file to update - ./path/to/file",
+              },
+              content: {
+                type: "string",
+                description: "The new content for the file",
+              },
+            },
+            required: ["path", "content"],
+          },
+        },
+      },
+      {
+        type: "function",
+        function: {
+          name: "create_file",
+          description: "Create a new file in a repository",
+          parameters: {
+            type: "object",
+            properties: {
+              path: {
+                type: "string",
+                description: "The path for the new file - ./path/to/file",
+              },
+              content: {
+                type: "string",
+                description: "The content for the new file",
+              },
+            },
+            required: ["path", "content"],
+          },
+        },
+      },
+      {
+        type: "function",
+        function: {
+          name: "delete_file",
+          description: "Delete a file from a repository",
+          parameters: {
+            type: "object",
+            properties: {
+              path: {
+                type: "string",
+                description: "The path of the file to delete - ./path/to/file",
+              },
+            },
+            required: ["path"],
+          },
+        },
+      },
     ],
   });
 
@@ -111,6 +170,32 @@ const handleRequiresAction = async (thread, run) => {
           JSON.parse(tool.function.arguments).path,
           "utf-8"
         ),
+      });
+    }
+    // Handle update_file, create_file, and delete_file actions
+    else if (tool.function.name === "update_file") {
+      const args = JSON.parse(tool.function.arguments);
+      fs.writeFileSync(args.path, args.content, "utf-8");
+      console.log(`Updating file at path: ${args.path}`);
+      toolOutputs.push({
+        tool_call_id: tool.id,
+        output: "File updated successfully",
+      });
+    } else if (tool.function.name === "create_file") {
+      const args = JSON.parse(tool.function.arguments);
+      fs.writeFileSync(args.path, args.content, "utf-8");
+      console.log(`Creating new file at path: ${args.path}`);
+      toolOutputs.push({
+        tool_call_id: tool.id,
+        output: "File created successfully",
+      });
+    } else if (tool.function.name === "delete_file") {
+      const args = JSON.parse(tool.function.arguments);
+      fs.unlinkSync(args.path);
+      console.log(`Deleting file at path: ${args.path}`);
+      toolOutputs.push({
+        tool_call_id: tool.id,
+        output: "File deleted successfully",
       });
     }
   }
