@@ -2,7 +2,7 @@ name: Issue Workflow
 
 on:
   issues:
-    types: [created]
+    types: [opened]
 
 jobs:
   run-workspace:
