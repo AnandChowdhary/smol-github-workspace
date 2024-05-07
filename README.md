@@ -1,4 +1,4 @@
-# smol-github-workspace
+# Smol GitHub Copilot Workspace
 
 This is an example of a GitHub Actions workflow that uses the OpenAI Assistants API so give you an AI assistant that **creates pull requests from issues automatically**. Think of it as a baby version of GitHub Copilot Workspace which can read, write, update, and delete files in your repository.
 
