@@ -1,4 +1,4 @@
-import fs from "fs";
+const fs = require("fs");
 const { Octokit } = require("@octokit/action");
 const OpenAI = require("openai");
 
