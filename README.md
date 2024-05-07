@@ -5,7 +5,7 @@ This is an example of a GitHub Actions workflow that uses the OpenAI Assistants 
 To test it out, create a new issue. Describe the change you'd like to make, for example "Make the index.html button text red" and in a few moments, a pull request should be created with your changes ✨ automatically ✨. 
 
 > [!CAUTION]
-> This repository uses by OpenAI API key, please use with care.
+> This repository uses my personal OpenAI API key, please use with care.
 
 ## License
 
