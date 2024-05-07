@@ -1,0 +1,17 @@
+name: Issue Workflow
+
+on:
+  issues:
+    types: [created]
+
+jobs:
+  run-workspace:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Run workspace.js
+      run: node workspace.js ${{ github.event.issue.number }}
