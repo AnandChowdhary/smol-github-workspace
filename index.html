@@ -6,8 +6,17 @@
     <title>Counter Example</title>
     <style>
         #increment-btn {
-            background: linear-gradient(to right, green, blue); /* Updated to gradient background */
-            color: yellow; /* Text color as yellow */
+            background: linear-gradient(to right, #4caf50, #008000); /* Improved gradient to cooler shades of green */
+            color: white; /* Changed text color to white for better contrast */
+            padding: 10px 20px; /* Added padding to make button larger */
+            border: none; /* No border styling */
+            border-radius: 5px; /* Rounded corners for a modern look */
+            cursor: pointer; /* Cursor indicates button */
+            font-size: 16px; /* Increase font size for better readability */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        #increment-btn:hover {
+            background-color: #006400; /* Darker green on hover */
         }
         body {
             font-family: Arial, sans-serif; /* Added font style to body for better readability */
@@ -16,6 +25,11 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centralized content */
+        }
+        #count {
+            font-size: 24px; /* Increased font size for better visibility */
+            margin-top: 20px; /* Added space above for clear separation */
+            color: #333; /* Darker text for better readability */
         }
     </style>
 </head>
@@ -26,9 +40,4 @@
     <script>
         let count = 0;
         document.getElementById('increment-btn').addEventListener('click', function() {
-            count += 20; /* Changed increment to 20 */
-            document.getElementById('count').textContent = count;
-        });
-    </script>
-</body>
-</html>
+            count += 20; /* Changed increment
