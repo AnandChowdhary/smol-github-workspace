@@ -6,6 +6,9 @@ To test it out, create a new issue. Describe the change you'd like to make, for 
 
 > [!CAUTION]
 > This repository uses my personal OpenAI API key, please use with care.
+>
+
+Here's the video of me building this: https://www.tella.tv/video/clvw9tacw023i0ck0f8nh20b0/view
 
 ## License
 
