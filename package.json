@@ -1,4 +1,5 @@
 {
+  "name": "smol-github-workspace",
   "dependencies": {
     "@octokit/action": "^6.1.0",
     "openai": "^4.42.0"
